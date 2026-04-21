@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prolog Practical</title>
+    <style>
+        body { font-family: monospace; padding: 20px; line-height: 1.5; }
+        h2 { margin-top: 30px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 6px; }
+    </style>
+</head>
+<style>
+    body {
+        background: #0d1117;
+        color: #c9d1d9;
+        font-family: monospace;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        color: #58a6ff;
+    }
+
+    pre {
+        background: #161b22;
+        color: #c9d1d9;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #30363d;
+    }
+</style>
+<body>
+
+<h1>Prolog Practical – Shortest Solutions</h1>
+
+<h2>1. Family Tree</h2>
+<pre>
+parent(john, mary).
+parent(mary, sam).
+
+grandparent(X,Y):- parent(X,Z), parent(Z,Y).
+sibling(X,Y):- parent(P,X), parent(P,Y), X\=Y.
+</pre>
+
+<h2>2. conc(L1, L2, L3)</h2>
+<pre>
+conc([],L,L).
+conc([H|T],L,[H|R]):- conc(T,L,R).
+</pre>
+
+<h2>3. reverse(L, R)</h2>
+<pre>
+reverse([],[]).
+reverse([H|T],R):- reverse(T,RT), append(RT,[H],R).
+</pre>
+
+<h2>4. Sum of Two Numbers</h2>
+<pre>
+sum(X,Y,Z):- Z is X+Y.
+</pre>
+
+<h2>5. max(X, Y, M)</h2>
+<pre>
+max(X,Y,X):- X>=Y.
+max(X,Y,Y):- Y>X.
+</pre>
+
+<h2>6. factorial(N, F)</h2>
+<pre>
+fact(0,1).
+fact(N,F):- N>0, N1 is N-1, fact(N1,F1), F is N*F1.
+</pre>
+
+<h2>7. Fibonacci</h2>
+<pre>
+fib(0,0).
+fib(1,1).
+fib(N,F):- N>1, N1 is N-1, N2 is N-2,
+           fib(N1,F1), fib(N2,F2),
+           F is F1+F2.
+</pre>
+
+<h2>8. power(Num, Pow, Ans)</h2>
+<pre>
+power(_,0,1).
+power(N,P,R):- P>0, P1 is P-1, power(N,P1,R1), R is N*R1.
+</pre>
+
+<h2>9. multi(N1, N2, R)</h2>
+<pre>
+multi(X,Y,R):- R is X*Y.
+</pre>
+
+<h2>10. memb(X, L)</h2>
+<pre>
+memb(X,[X|_]).
+memb(X,[_|T]):- memb(X,T).
+</pre>
+
+<h2>11. sumlist(L, S)</h2>
+<pre>
+sumlist([],0).
+sumlist([H|T],S):- sumlist(T,S1), S is H+S1.
+</pre>
+
+<h2>12. evenlength / oddlength</h2>
+<pre>
+evenlength([]).
+evenlength([_,_|T]):- evenlength(T).
+
+oddlength([_]).
+oddlength([_,_|T]):- oddlength(T).
+</pre>
+
+<h2>13. maxlist(L, M)</h2>
+<pre>
+maxlist([X],X).
+maxlist([H|T],M):- maxlist(T,M1), M is max(H,M1).
+</pre>
+
+<h2>14. insert(I, N, L, R)</h2>
+<pre>
+insert(I,1,L,[I|L]).
+insert(I,N,[H|T],[H|R]):- N>1, N1 is N-1, insert(I,N1,T,R).
+</pre>
+
+<h2>15. delete(N, L, R)</h2>
+<pre>
+delete(1,[_|T],T).
+delete(N,[H|T],[H|R]):- N>1, N1 is N-1, delete(N1,T,R).
+</pre>
+
+</body>
+</html>
